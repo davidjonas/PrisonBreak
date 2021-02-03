@@ -5,20 +5,82 @@ using UnityEngine;
 
 public class Tests : MonoBehaviour
 {
+    public Inventory inventory;
+    
     // Start is called before the first frame update
     void Start()
     {
-      TestCreateItem();
+      //TestCreateItem();
+      
+      TestInventoryFunctionality();
     }
 
     private void TestCreateItem()
     {
+        Debug.Log("============== Testing creation of items =============");
         Item i = new AccessItem("Key of doom", 10, 1);
         DebugItem(i);
         
         Item j = new BonusItem("Potato of the gods", 2, 100);
         DebugItem(j);
     }
+
+    private void TestInventoryFunctionality()
+    {
+        Debug.Log("============== Testing inventory functionality =============");
+        Item i = new AccessItem("Key of doom", 10, 1);
+        Item j = new BonusItem("Potato of the gods", 50, 50);
+        Item k = new BonusItem("Globe of eternal sunshine", 50, 100);
+
+        if (inventory.AddItem(i))
+        {
+            Debug.Log("Added " + i.GetName() + " to the inventory");
+        }
+        else
+        {
+            Debug.Log("Failed to add " + i.GetName() + " to the inventory");
+        }
+        
+        if (inventory.AddItem(j))
+        {
+            Debug.Log("Added " + j.GetName() + " to the inventory");
+        }
+        else
+        {
+            Debug.Log("Failed to add " + j.GetName() + " to the inventory");
+        }
+        
+        if (inventory.AddItem(k))
+        {
+            Debug.Log("Added " + k.GetName() + " to the inventory");
+        }
+        else
+        {
+            Debug.Log("Failed to add " + k.GetName() + " to the inventory");
+        }
+        
+        inventory.DebugInventory();
+
+        if (inventory.CanOpenDoor(1))
+        {
+            Debug.Log("Door 1 can be opened.");
+        }
+        else
+        {
+            Debug.Log("Door 1 can NOT be opened.");
+        }
+        
+        if (inventory.CanOpenDoor(2))
+        {
+            Debug.Log("Door 2 can be opened.");
+        }
+        else
+        {
+            Debug.Log("Door 2 can NOT be opened.");
+        }
+    }
+
+    
 
     private void DebugItem(Item i)
     {

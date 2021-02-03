@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using UnityEngine;
 
 public class AccessItem : Item
@@ -14,5 +15,10 @@ public class AccessItem : Item
     public int GetDoorId()
     {
         return doorId;
+    }
+
+    public bool OpensDoor(int id)
+    {
+        return doorId == id;
     }
 }
