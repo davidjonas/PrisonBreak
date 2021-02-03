@@ -1,18 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
+using UnityEditor;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item
 {
-    // Start is called before the first frame update
-    void Start()
+    //Properties
+    private string name;
+    private float weight;
+
+    //Constructor
+    public Item(string name, float weight)
     {
-        
+        this.name = name;
+        this.weight = weight;
+    }
+    
+    //Methods
+    public string GetName()
+    {
+        return name;
     }
 
-    // Update is called once per frame
-    void Update()
+    public float GetWeight()
     {
-        
+        return weight;
     }
 }
