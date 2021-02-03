@@ -4,14 +4,14 @@ using Unity.Collections;
 using UnityEditor;
 using UnityEngine;
 
-public class Item
+public abstract class Item
 {
     //Properties
     private string name;
     private float weight;
 
     //Constructor
-    public Item(string name, float weight)
+    protected Item(string name, float weight)
     {
         this.name = name;
         this.weight = weight;
