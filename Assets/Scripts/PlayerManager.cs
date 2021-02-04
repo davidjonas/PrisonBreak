@@ -14,17 +14,35 @@ public class PlayerManager : MonoBehaviour
         inventory = new Inventory(initialMaxWeight);
     }
 
+    void Update()
+    {
+        if (Input.GetButtonDown("Interact"))
+        {
+            Debug.Log("interacting...");
+            
+            RaycastHit hit;
+
+            if (Physics.SphereCast(transform.position, 0.5f, transform.forward, out hit, 2))
+            {
+                Debug.Log("Hit something");
+                IInteractable i = hit.collider.gameObject.GetComponent<IInteractable>();
+                if (i != null)
+                {
+                    Debug.Log("Hit an interactable.");
+                    i.Action(this);
+                }
+            }
+        }
+    }
+    
     public bool AddItem(Item i)
     {
         return inventory.AddItem(i);
     }
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    public bool CanOpenDoor(int id)
     {
-        if (hit.gameObject.CompareTag("Interactable"))
-        {
-            IInteractable i = hit.gameObject.GetComponent<IInteractable>();
-            i.Action(this);
-        }
+        return inventory.CanOpenDoor(id);
     }
+     
 }
