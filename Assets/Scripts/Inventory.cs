@@ -4,15 +4,38 @@ using UnityEditor;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory
 {
-    private List<Item> items = new List<Item>();
-    private float weight=0;
-    public float MaximumWeight = 100;
+    private List<Item> items;
+    private float weight;
+    private float maximumWeight;
 
+    public Inventory()
+    {
+        items = new List<Item>();
+        weight = 0;
+        maximumWeight = 100;
+    }
+
+    public Inventory(float maximumWeight) : this()
+    {
+        this.maximumWeight = maximumWeight;
+    }
+
+    public bool SetMaximumWeight(float maxWeight)
+    {
+        if (maxWeight >= weight)
+        {
+            maximumWeight = maxWeight;
+            return true;
+        }
+ 
+        return false;
+    }
+    
     public bool AddItem(Item i)
     {
-        if (weight + i.GetWeight() <= MaximumWeight)
+        if (weight + i.GetWeight() <= maximumWeight)
         {
             items.Add(i);
             weight += i.GetWeight();

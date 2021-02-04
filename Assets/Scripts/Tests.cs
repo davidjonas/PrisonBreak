@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class Tests : MonoBehaviour
 {
-    public Inventory inventory;
+    private Inventory inventory;
     
     // Start is called before the first frame update
     void Start()
     {
-      //TestCreateItem();
+      inventory = new Inventory(150);
       
       TestInventoryFunctionality();
     }
