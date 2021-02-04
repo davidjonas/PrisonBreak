@@ -78,6 +78,43 @@ public class Tests : MonoBehaviour
         {
             Debug.Log("Door 2 can NOT be opened.");
         }
+        
+        if (inventory.HasItem(i))
+        {
+            Debug.Log("Inventory has Key of doom");
+        }
+        else
+        {
+            Debug.Log("Key of doom not in inventory");
+        }
+
+        if (inventory.RemoveItem(i))
+        {
+            Debug.Log("Key Removed");
+        }
+        else
+        {
+            Debug.Log("Key was not removed");
+        }
+        
+        if (inventory.CanOpenDoor(1))
+        {
+            Debug.Log("Door 1 can be opened.");
+        }
+        else
+        {
+            Debug.Log("Door 1 can NOT be opened.");
+        }
+
+        if (inventory.HasItem(i))
+        {
+            Debug.Log("Inventory has Key of doom");
+        }
+        else
+        {
+            Debug.Log("Key of doom not in inventory");
+        }
+        
     }
 
     
