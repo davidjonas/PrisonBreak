@@ -31,6 +31,7 @@ public class Tests : MonoBehaviour
         Item i = new AccessItem("Key of doom", 10, 1);
         Item j = new BonusItem("Potato of the gods", 50, 50);
         Item k = new BonusItem("Globe of eternal sunshine", 50, 100);
+        Item l = new PuzzleItem("Ultimate puzzle", 1f, "What is the answer to the universe, life and everything", "42");
 
         if (inventory.AddItem(i))
         {
@@ -58,6 +59,16 @@ public class Tests : MonoBehaviour
         {
             Debug.Log("Failed to add " + k.GetName() + " to the inventory");
         }
+        
+        if (inventory.AddItem(l))
+        {
+            Debug.Log("Added " + i.GetName() + " to the inventory");
+        }
+        else
+        {
+            Debug.Log("Failed to add " + i.GetName() + " to the inventory");
+        }
+
         
         inventory.DebugInventory();
 
@@ -115,9 +126,29 @@ public class Tests : MonoBehaviour
             Debug.Log("Key of doom not in inventory");
         }
         
+        TestRiddle(l);
+        
     }
 
-    
+    private void TestRiddle(Item i)
+    {
+        if (i is PuzzleItem)
+        {
+            PuzzleItem p = (PuzzleItem) i;
+            Debug.Log("========Testing Riddle=========");
+
+            Debug.Log("Riddle is: " + p.GetRiddle());
+            Debug.Log("Answer is: " + p.GetAnswer());
+            Debug.Log("Solved is: " + p.IsSolved());
+            Debug.Log("Testing 32 as answer: " + p.CheckAnswer("32"));
+            Debug.Log("Testing 42 as answer: " + p.CheckAnswer("42"));
+            Debug.Log("Solved is: " + p.IsSolved());
+            Debug.Log("Resetting....");
+            p.Reset();
+            Debug.Log("Solved is: " + p.IsSolved());
+        }
+        
+    }
 
     private void DebugItem(Item i)
     {
