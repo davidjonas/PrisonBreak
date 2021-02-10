@@ -18,17 +18,13 @@ public class PlayerManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            Debug.Log("interacting...");
-            
             RaycastHit hit;
 
             if (Physics.SphereCast(transform.position, 0.5f, transform.forward, out hit, 2))
             {
-                Debug.Log("Hit something");
                 IInteractable i = hit.collider.gameObject.GetComponent<IInteractable>();
                 if (i != null)
                 {
-                    Debug.Log("Hit an interactable.");
                     i.Action(this);
                 }
             }
