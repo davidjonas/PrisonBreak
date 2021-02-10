@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -28,6 +29,23 @@ public class PlayerManager : MonoBehaviour
                     i.Action(this);
                 }
             }
+        }
+        
+        //Temporary code to test dropping
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            DropItem("Key of Doom");
+        }
+    }
+
+    public void DropItem(string name)
+    {
+        Item i = inventory.GetItemWithName(name);
+
+        if (i != null)
+        {
+            inventory.RemoveItem(i);
+            GameManager.Instance.DropItem(name, transform.position + transform.forward);
         }
     }
     
