@@ -9,6 +9,7 @@ public class PlayerManager : MonoBehaviour
 {
     private Inventory inventory;
     public float initialMaxWeight=100;
+    public Transform directionSetter;
     
     void Start()
     {
@@ -21,7 +22,7 @@ public class PlayerManager : MonoBehaviour
         {
             RaycastHit hit;
 
-            if (Physics.SphereCast(transform.position, 0.5f, transform.forward, out hit, 2))
+            if (Physics.SphereCast(transform.position, 0.2f, directionSetter.forward, out hit, 2))
             {
                 IInteractable i = hit.collider.gameObject.GetComponent<IInteractable>();
                 if (i != null)
