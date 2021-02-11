@@ -95,6 +95,18 @@ public class Inventory
         return result;
     }
 
+    public string [] GetItemNames()
+    {
+        string[] result = new string[items.Count];
+        
+        for (int i=0; i<items.Count; i++)
+        {
+            result[i] = items[i].GetName();
+        }
+
+        return result;
+    }
+    
     public int Count()
     {
         return items.Count;

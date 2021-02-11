@@ -5,7 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    
     private Dictionary<string, Pickup> worldItems = new Dictionary<string, Pickup>();
+    public UIManager ui;
 
     private void Awake()
     {
@@ -34,5 +36,15 @@ public class GameManager : MonoBehaviour
     public void DropItem(string name, Vector3 position)
     {
         worldItems[name].Respawn(position);
+    }
+
+    public Pickup GetPickupWithName(string name)
+    {
+        return worldItems[name];
+    }
+
+    public void TriggerInventoryUIUpdate()
+    {
+        ui.UpdateInventoryUI();
     }
 }

@@ -47,16 +47,28 @@ public class PlayerManager : MonoBehaviour
             inventory.RemoveItem(i);
             GameManager.Instance.DropItem(name, transform.position + transform.forward);
         }
+        GameManager.Instance.TriggerInventoryUIUpdate();
     }
     
     public bool AddItem(Item i)
     {
-        return inventory.AddItem(i);
+        bool success = inventory.AddItem(i);
+        if (success)
+        {
+            GameManager.Instance.TriggerInventoryUIUpdate();
+        }
+        return success;
+        
     }
 
     public bool CanOpenDoor(int id)
     {
         return inventory.CanOpenDoor(id);
+    }
+
+    public string[] GetItemNames()
+    {
+        return inventory.GetItemNames();
     }
      
 }
