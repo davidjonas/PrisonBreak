@@ -9,6 +9,9 @@ public class TerrainConfig : MonoBehaviour
 
     public float scale = 5f;
     
+    [Range(0, 1)]
+    public float baseAmplitude = 1f;
+    
     [Range(1, 10)]
     public int octaves = 4;
     
@@ -18,7 +21,7 @@ public class TerrainConfig : MonoBehaviour
     [Range(0f, 1f)] 
     public float persistence = 0.5f;
 
-    public Vector2 offset = Vector2.zero;
+    public Vector3 offset = Vector2.zero;
 
     void Start()
     {
@@ -27,7 +30,7 @@ public class TerrainConfig : MonoBehaviour
     
     private float[,] GenerateTerrainData()
     {
-        return ProceduralUtils.GenerateTerrainData(size.x, size.y, scale / 1000f, octaves, lacunarity, persistence, offset);
+        return ProceduralUtils.GenerateTerrainData(size.x, size.y, scale / 1000f, baseAmplitude, octaves, lacunarity, persistence, offset);
         
     }
 
