@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -96,6 +97,67 @@ public static class ProceduralUtils
         return result;
     }
     
+    [Serializable]
+    public struct LayerData
+    {
+        public string name;
+        public float heightTrigger;
+        public float fadeAmount;
+        public LayerData(string name, float heightTrigger, float fadeAmount)
+        {
+            this.name = name;
+            this.heightTrigger = heightTrigger;
+            this.fadeAmount = fadeAmount;
+        }
+    }
+
+    public static float[,,] GenerateTextureData(float[,] terrainData, LayerData[] layers)
+    {
+        int width = terrainData.GetLength(0);
+        int height = terrainData.GetLength(1);
+        float[,,] map = new float[width, height, layers.Length];
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                float value = terrainData[x, y];
+                for (int l = 0; l < layers.Length; l++)
+                {
+                    float mapValue;
+                    if (l == 0)
+                    {
+                        mapValue = Mathf.Clamp(Utils.Map(value, layers[l].heightTrigger, layers[l].heightTrigger+layers[l].fadeAmount, 1f, 0f), 0, 1);
+                    }
+                    else 
+                    {
+                        if (value > layers[l].heightTrigger)
+                        {
+                            //fade up
+                            mapValue = Mathf.Clamp(Utils.Map(value, layers[l].heightTrigger, layers[l].heightTrigger+layers[l].fadeAmount, 1f, 0f), 0, 1);
+                        }
+                        else if (value < layers[l-1].heightTrigger+layers[l-1].fadeAmount)
+                        {
+                            //fade down
+                            mapValue = Mathf.Clamp(Utils.Map(value, layers[l-1].heightTrigger, layers[l-1].heightTrigger+layers[l-1].fadeAmount, 0f, 1f), 0, 1);
+                        }
+                        else
+                        {
+                            //Middle
+                            mapValue = 1;
+                        }
+
+                        //mapValue = value < layers[l].heightTrigger && value > layers[l-1].heightTrigger ? 1.0f : 0.0f;
+                    }
+                    
+                    map[x, y, l] = mapValue;
+                }
+            }
+        }
+
+        return map;
+    }
+
     public static float GetPerlinValue(float x, float y, float frequency, float amplitude)
     {
         float result = (Mathf.PerlinNoise(x * frequency, y * frequency) * 2f - 1) * amplitude;

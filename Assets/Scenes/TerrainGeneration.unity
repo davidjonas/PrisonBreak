@@ -274,17 +274,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 1383677311}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c2ec57c94ddefe4eaff1a5d1dc5f158, type: 3}
+  m_Script: {fileID: 11500000, guid: 29281eefbabc58e4685e25d58914063d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 1024, y: 1024}
-  scale: 2.1
-  baseAmplitude: 0.333
+  scale: 0.74
+  baseAmplitude: 0.933
   octaves: 9
-  lacunarity: 2.14
-  persistence: 0.49
-  offset: {x: 0, y: 0, z: 0.4}
+  lacunarity: 2.35
+  persistence: 0.454
+  offset: {x: 2.5, y: 12487, z: 1.3}
   t: {fileID: 1383677313}
+  layers:
+  - name: Sand
+    heightTrigger: 0.03
+    fadeAmount: 0.03
+  - name: Grass
+    heightTrigger: 0.2
+    fadeAmount: 0.006
+  - name: Stone
+    heightTrigger: 1
+    fadeAmount: 0
+  innerRadius: 100
+  outerRadius: 500
 --- !u!1 &1611250760
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +415,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.1
+      value: 39
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 5e9e851c0e142814dac026a256ba2ac0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -553,6 +565,6 @@ MonoBehaviour:
   baseAmplitude: 1
   octaves: 9
   lacunarity: 1.9
-  persistence: 0.5
+  persistence: 0.809
   offset: {x: 0, y: 0, z: 0}
   mat: {fileID: 2100000, guid: 1425d7ffaffcab741881e858cfbfacc2, type: 2}

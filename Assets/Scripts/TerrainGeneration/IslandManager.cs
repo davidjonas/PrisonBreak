@@ -13,7 +13,6 @@ public class IslandManager : TerrainManager
     protected override void UpdateTerrainData(float[,] data)
     {
         data = ProceduralUtils.IslandFilter(data, innerRadius, outerRadius);
-        t.terrainData.heightmapResolution = size.x;
-        t.terrainData.SetHeights(0,0, data);
+        base.UpdateTerrainData(data);
     }
 }
