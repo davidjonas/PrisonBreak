@@ -278,20 +278,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 1024, y: 1024}
-  scale: 0.74
-  baseAmplitude: 0.933
-  octaves: 9
-  lacunarity: 2.35
-  persistence: 0.454
-  offset: {x: 2.5, y: 12487, z: 1.3}
+  scale: 1
+  baseAmplitude: 0.816
+  octaves: 6
+  lacunarity: 2.47
+  persistence: 0.442
+  offset: {x: 2.5, y: 12487, z: 2.25}
   t: {fileID: 1383677313}
   layers:
   - name: Sand
-    heightTrigger: 0.03
-    fadeAmount: 0.03
+    heightTrigger: 0.02
+    fadeAmount: 0.08
   - name: Grass
-    heightTrigger: 0.2
-    fadeAmount: 0.006
+    heightTrigger: 0.1
+    fadeAmount: 0.3
   - name: Stone
     heightTrigger: 1
     fadeAmount: 0

@@ -146,8 +146,6 @@ public static class ProceduralUtils
                             //Middle
                             mapValue = 1;
                         }
-
-                        //mapValue = value < layers[l].heightTrigger && value > layers[l-1].heightTrigger ? 1.0f : 0.0f;
                     }
                     
                     map[x, y, l] = mapValue;
