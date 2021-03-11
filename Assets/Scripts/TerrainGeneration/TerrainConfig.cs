@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class TerrainConfig : MonoBehaviour
 {
+    public bool autoUpdate = false;
     public Vector2Int size = new Vector2Int(512, 512);
 
     public float scale = 5f;
@@ -23,11 +24,6 @@ public class TerrainConfig : MonoBehaviour
 
     public Vector3 offset = Vector2.zero;
 
-    void Start()
-    {
-        UpdateTerrainData(GenerateTerrainData());   
-    }
-    
     private float[,] GenerateTerrainData()
     {
         return ProceduralUtils.GenerateTerrainData(size.x, size.y, scale / 1000f, baseAmplitude, octaves, lacunarity, persistence, offset);
@@ -41,6 +37,6 @@ public class TerrainConfig : MonoBehaviour
 
     private void OnValidate()
     {
-        UpdateTerrainData(GenerateTerrainData());
+        if(autoUpdate) UpdateTerrainData(GenerateTerrainData());
     }
 }
