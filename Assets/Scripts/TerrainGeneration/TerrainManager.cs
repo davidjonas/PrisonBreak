@@ -10,6 +10,5 @@ public class TerrainManager : TerrainConfig
     {
         t.terrainData.heightmapResolution = size.x;
         t.terrainData.SetHeights(0,0, data);
-        t.drawHeightmap = true;
     }
 }
