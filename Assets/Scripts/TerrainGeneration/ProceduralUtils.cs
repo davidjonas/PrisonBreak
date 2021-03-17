@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public static class ProceduralUtils
 {
@@ -108,6 +109,30 @@ public static class ProceduralUtils
             this.name = name;
             this.heightTrigger = heightTrigger;
             this.fadeAmount = fadeAmount;
+        }
+    }    
+    
+    [Serializable]
+    public struct TreeLayerData
+    {
+        public string name;
+        public int index;
+        public float minHeight;
+        public float maxHeight;
+        public float density;
+        
+        public TreeLayerData(string name, int index, float minHeight, float maxHeight, float density)
+        {
+            this.name = name;
+            this.index = index;
+            this.minHeight = minHeight;
+            this.maxHeight = maxHeight;
+            this.density = density;
+        }
+
+        public bool Generate(float height)
+        {
+            return height < maxHeight && height > minHeight && Random.value < density;
         }
     }
 
